@@ -1,8 +1,3 @@
-/*
- *  Created on: 30.03.2019
- *      Author: Albrecht Nitsche und Jens Kabisch
- */
-
 #ifndef AVERAGE_VALUE_H
 #define AVERAGE_VALUE_H
 
@@ -22,7 +17,6 @@ private:
 	T *values;
 	uint32_t valueNum;
 	uint32_t currentPosition = 0;
-//	T sum;
 };
 
 template<class T>
@@ -30,7 +24,6 @@ AverageValue<T>::AverageValue(uint32_t valueNum) {
 	this->valueNum = valueNum;
 	this->values = (T *) malloc(sizeof(T) * valueNum);
 	this->currentPosition = 0;
-//	this->sum = 0;
 	for (uint32_t i = 0; i < this->valueNum; i++) {
 		this->values[i] = 0;
 	}
@@ -45,7 +38,6 @@ template<class T>
 void AverageValue<T>::push(T value) {
 	this->values[this->currentPosition] = value;
 	this->currentPosition = (this->currentPosition + 1) % this->valueNum;
-//	Serial.println(String(this->currentPosition));
 }
 
 template<class T>
@@ -53,11 +45,7 @@ T AverageValue<T>::average() {
 	T sum = 0;
 	for (uint32_t i = 0; i < this->valueNum; i++) {
 		sum += this->values[i];
-//		Serial.print(this->values[i]);
-//		Serial.print(',');
 	}
-//	Serial.print(':');
-//	Serial.println(String(sum));
 	return (sum / (T)this->valueNum);
 }
 
